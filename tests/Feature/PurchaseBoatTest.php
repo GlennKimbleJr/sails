@@ -16,26 +16,40 @@ class PurchaseBoatTest extends TestCase
     {
         parent::setUp();
 
+        $this->user = factory(User::class)->create();
         $this->boat = factory(Boat::class)->create();
+        $this->getRoute = route('sales.create', $this->boat);
+        $this->postRoute = route('sales.store', $this->boat);
     }
 
     /** @test */
     public function guests_cannot_purchase_a_boat()
     {
-        $this->get(route('sales.create', $this->boat))->assertRedirect(route('login'));
-        $this->post(route('sales.store', $this->boat))->assertRedirect(route('login'));
+        $this->get($this->getRoute)->assertRedirect(route('login'));
+        $this->post($this->postRoute)->assertRedirect(route('login'));
         $this->assertEmpty(Sale::get());
     }
 
     /** @test */
     public function users_can_purchase_a_boat()
     {
-        $user = factory(User::class)->create();
+        $this->actingAs($this->user)->get($this->getRoute)->assertStatus(200);
+        $this->actingAs($this->user)->post($this->postRoute, [
+            'price' => '$25.00',
+        ])->assertStatus(200);
 
-        $this->actingAs($user)->get(route('sales.create', $this->boat))->assertStatus(200);
+        $sales = Sale::get();
+        $this->assertCount(1, $sales);
+        $this->assertEquals(2500, $sales->first()->price);
+    }
 
-        $this->actingAs($user)->post(route('sales.store', $this->boat))->assertStatus(200);
+    /** @test */
+    public function a_price_is_required_to_purchase_a_boat()
+    {
+        $this->actingAs($this->user)->post($this->postRoute, [
+            'price' => null,
+        ])->assertSessionHasErrors('price');
 
-        $this->assertCount(1, Sale::get());
+        $this->assertEmpty(Sale::get());
     }
 }

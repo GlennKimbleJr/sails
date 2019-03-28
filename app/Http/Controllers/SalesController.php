@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Boat;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateSaleRequest;
 
 class SalesController extends Controller
 {
@@ -20,12 +21,12 @@ class SalesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Http\Requests\CreateSaleRequest $request
      * @param  \App\Boat $boat
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Boat $boat)
+    public function store(CreateSaleRequest $request, Boat $boat)
     {
-        $boat->generateQuote();
+        $boat->generateQuote($request->price);
     }
 }

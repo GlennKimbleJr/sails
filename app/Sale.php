@@ -13,6 +13,7 @@ class Sale extends Model
      * @var array
      */
     protected $fillable = [
+        'price',
         'status',
     ];
 

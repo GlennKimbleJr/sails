@@ -12,10 +12,11 @@ class Boat extends Model
         return $this->hasMany(Sale::class);
     }
 
-    public function generateQuote()
+    public function generateQuote($price)
     {
         return $this->sales()->create([
             'status' => 'quoted',
+            'price' => dollar_to_integer($price),
         ]);
     }
 }

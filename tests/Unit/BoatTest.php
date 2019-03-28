@@ -17,9 +17,10 @@ class BoatTest extends TestCase
 
         $this->assertEmpty($boat->sales);
 
-        $quote = $boat->generateQuote();
+        $quote = $boat->generateQuote('$25.00');
 
         $this->assertEquals('quoted', $quote->status);
+        $this->assertEquals(2500, $quote->price);
 
         $this->assertCount(1, $boat->refresh()->sales);
     }
