@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Boat;
 use App\User;
+use App\Equipment;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -58,11 +59,16 @@ class ViewBoatsTest extends TestCase
             'stock_number' => 'EFG45678',
         ]);
 
+        $equipment = factory(Equipment::class)->create(['name' => 'Anchor']);
+
+        $boat->equipment()->attach($equipment);
+
         $this->actingAs($user)->get(route('boats.show', $boat))
             ->assertStatus(200)
             ->assertSee('2006')
             ->assertSee('Boston Whaler')
             ->assertSee('205 Conquest')
-            ->assertSee('$28,900.00');
+            ->assertSee('$28,900.00')
+            ->assertSee('Anchor');
     }
 }

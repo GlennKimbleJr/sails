@@ -3,10 +3,16 @@
 namespace App;
 
 use App\Sale;
+use App\Equipment;
 use Illuminate\Database\Eloquent\Model;
 
 class Boat extends Model
 {
+    public function equipment()
+    {
+        return $this->belongsToMany(Equipment::class);
+    }
+
     public function sales()
     {
         return $this->hasMany(Sale::class);

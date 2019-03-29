@@ -15,6 +15,15 @@
                         <p>Serial No: {{ $boat->serial_number }}</p>
                         <p>Stock No: {{ $boat->stock_number }}</p>
 
+                        @if ($boat->equipment->count())
+                            <p>Equipment List:</p>
+                            <ul>
+                                @foreach($boat->equipment as $equipment)
+                                    <li>{{ $equipment->name }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+
                         <hr>
                         <a class="btn btn-block btn-success" href="{{ route('sales.create', $boat) }}">Purchase</a>
                     </div>
