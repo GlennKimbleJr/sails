@@ -24,4 +24,12 @@ class BoatTest extends TestCase
 
         $this->assertCount(1, $boat->refresh()->sales);
     }
+
+    /** @test */
+    public function list_price_in_dollars_returns_the_list_price_in_dollars()
+    {
+        $boat = factory(Boat::class)->create(['list_price' => 2500000]);
+
+        $this->assertEquals('$25,000.00', $boat->list_price_in_dollars);
+    }
 }

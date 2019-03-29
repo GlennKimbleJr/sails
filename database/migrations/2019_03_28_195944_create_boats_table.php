@@ -15,6 +15,12 @@ class CreateBoatsTable extends Migration
     {
         Schema::create('boats', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('year');
+            $table->string('make');
+            $table->string('model');
+            $table->integer('list_price');
+            $table->string('serial_number');
+            $table->string('stock_number');
             $table->timestamps();
         });
     }

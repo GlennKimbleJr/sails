@@ -12,6 +12,11 @@ class Boat extends Model
         return $this->hasMany(Sale::class);
     }
 
+    public function getListPriceInDollarsAttribute()
+    {
+        return '$' . number_format($this->list_price/100, 2);
+    }
+
     public function generateQuote($price)
     {
         return $this->sales()->create([

@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-header bg-primary text-white">Inventory</div>
                 <div class="card-body">
-                    <a class="btn btn-block btn-light" href="#">View</a>
+                    <a class="btn btn-block btn-light" href="{{ route('boats.index') }}">View</a>
                 </div>
             </div>
         </div>
