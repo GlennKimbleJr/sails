@@ -45,7 +45,7 @@ class PurchaseBoatTest extends TestCase
     {
         $this->actingAs($this->user)->get($this->getRoute)->assertStatus(200);
 
-        $this->actingAs($this->user)->post($this->postRoute, $this->validParams())->assertStatus(200);
+        $this->actingAs($this->user)->post($this->postRoute, $this->validParams())->assertStatus(302);
 
         $this->assertCount(1, $sales = Sale::get());
 
@@ -105,7 +105,7 @@ class PurchaseBoatTest extends TestCase
                 $this->customer->id,
                 $otherCustomer->id,
             ]
-        ]))->assertStatus(200);
+        ]))->assertStatus(302);
 
         $this->assertCount(1, $sales = Sale::get());
 

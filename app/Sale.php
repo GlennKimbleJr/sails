@@ -31,5 +31,7 @@ class Sale extends Model
     public function for(array $customer_ids)
     {
         $this->customers()->sync($customer_ids);
+
+        return $this;
     }
 }
