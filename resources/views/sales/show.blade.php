@@ -21,7 +21,10 @@
                     <div class="row">
                         <div class="col-md-6 text-center">
                             <h2>Status: {{ ucwords($sale->status) }}</h2>
-                            <a class="btn btn-lg btn-secondary m-4" href="#">View Invoice</a>
+
+                            <a class="btn btn-lg btn-secondary m-4" href="{{ route('sales.invoice', $sale) }}">
+                                View Invoice
+                            </a>
                         </div>
 
                         <div class="col-md-6 text-md-right">

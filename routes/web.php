@@ -24,3 +24,4 @@ Route::get('/boats/{boat}/purchase', 'SalesController@create')->name('sales.crea
 Route::post('/boats/{boat}/purchase', 'SalesController@store')->name('sales.store')->middleware('auth');
 Route::get('/sales', 'SalesController@index')->name('sales.index')->middleware('auth');
 Route::get('/sales/{sale}', 'SalesController@show')->name('sales.show')->middleware('auth');
+Route::get('/sales/{sale}/invoice', 'SalesInvoiceController@show')->name('sales.invoice')->middleware('auth');
