@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Boat;
+use App\Customer;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
@@ -20,5 +21,15 @@ class Sale extends Model
     public function boat()
     {
         return $this->belongsTo(Boat::class);
+    }
+
+    public function customers()
+    {
+        return $this->belongsToMany(Customer::class);
+    }
+
+    public function for(array $customer_ids)
+    {
+        $this->customers()->sync($customer_ids);
     }
 }

@@ -27,6 +27,6 @@ class SalesController extends Controller
      */
     public function store(CreateSaleRequest $request, Boat $boat)
     {
-        $boat->generateQuote($request->price);
+        $boat->generateQuote($request->price)->for($request->customers);
     }
 }

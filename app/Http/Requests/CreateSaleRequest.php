@@ -25,6 +25,8 @@ class CreateSaleRequest extends FormRequest
     {
         return [
             'price' => 'required',
+            'customers' => 'required|array',
+            'customers.*' => 'integer|exists:customers,id',
         ];
     }
 }
