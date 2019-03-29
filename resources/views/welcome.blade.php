@@ -85,7 +85,7 @@
                 </div>
 
                 <div>
-                    A boat sales platform.
+                    Your boat sales platform.
                 </div>
             </div>
         </div>
