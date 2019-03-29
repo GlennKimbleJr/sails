@@ -26,4 +26,12 @@ class SaleTest extends TestCase
         $this->assertTrue($sale->customers->first()->is($customer));
         $this->assertTrue($sale->customers->last()->is($customer2));
     }
+
+    /** @test */
+    public function price_in_dollars_returns_the_price_in_dollars()
+    {
+        $sale = factory(Sale::class)->create(['price' => 2500000]);
+
+        $this->assertEquals('$25,000.00', $sale->price_in_dollars);
+    }
 }

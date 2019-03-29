@@ -47,7 +47,7 @@ class SalesController extends Controller
     public function show(Sale $sale)
     {
         return view('sales.show', [
-            'sale' => $sale,
+            'sale' => $sale->loadMissing(['boat', 'customers']),
         ]);
     }
 }

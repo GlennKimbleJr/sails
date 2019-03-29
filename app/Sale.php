@@ -28,6 +28,11 @@ class Sale extends Model
         return $this->belongsToMany(Customer::class);
     }
 
+    public function getPriceInDollarsAttribute()
+    {
+        return '$' . number_format($this->price/100, 2);
+    }
+
     public function for(array $customer_ids)
     {
         $this->customers()->sync($customer_ids);
