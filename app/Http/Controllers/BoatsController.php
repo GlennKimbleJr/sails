@@ -15,7 +15,7 @@ class BoatsController extends Controller
     public function index()
     {
         return view('boats.index', [
-            'boats' => Boat::paginate(10),
+            'boats' => Boat::orderByDesc('list_price')->paginate(10),
         ]);
     }
 

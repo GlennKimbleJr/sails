@@ -10,10 +10,13 @@
                     {{ $boat->year }} {{ $boat->make }} {{ $boat->model }}
                 </div>
                 <div class="card-body row">
-                    <div class="col-md-6">thumbnail</div>
                     <div class="col-md-6">
-                        <h1>{{ $boat->list_price_in_dollars }}</h1>
-                        <a class="btn btn-block btn-light" href="{{ route('boats.show', $boat) }}">View</a>
+                        <img src="boat.jpg" class="img-fluid">
+                    </div>
+
+                    <div class="col-md-6 text-center text-md-right">
+                        <h1 class="p-2">{{ $boat->list_price_in_dollars }}</h1>
+                        <a class="btn btn-block btn-primary" href="{{ route('boats.show', $boat) }}">View</a>
                     </div>
                 </div>
             </div>

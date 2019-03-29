@@ -9,9 +9,12 @@
                     {{ $boat->year }} {{ $boat->make }} {{ $boat->model }}
                 </div>
                 <div class="card-body row">
-                    <div class="col-md-6">thumbnail</div>
                     <div class="col-md-6">
-                        <h1>{{ $boat->list_price_in_dollars }}</h1>
+                        <img src="/boat.jpg" class="img-fluid mb-3">
+                    </div>
+
+                    <div class="col-md-6">
+                        <h1 class="text-center text-md-left">{{ $boat->list_price_in_dollars }}</h1>
                         <p>Serial No: {{ $boat->serial_number }}</p>
                         <p>Stock No: {{ $boat->stock_number }}</p>
 
@@ -29,7 +32,17 @@
                     </div>
                 </div>
             </div>
+
+            <button class="btn btn-secondary mt-3" id="goBackBtn">Go Back</button>
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $('#goBackBtn').on('click', function () {
+        window.history.back();
+    })
+</script>
 @endsection
