@@ -17,11 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/boats', 'BoatsController@index')->name('boats.index')->middleware('auth');
-Route::get('/boats/{boat}', 'BoatsController@show')->name('boats.show')->middleware('auth');
-Route::get('/boats/{boat}/purchase', 'SalesController@create')->name('sales.create')->middleware('auth');
-Route::post('/boats/{boat}/purchase', 'SalesController@store')->name('sales.store')->middleware('auth');
-Route::get('/sales', 'SalesController@index')->name('sales.index')->middleware('auth');
-Route::get('/sales/{sale}', 'SalesController@show')->name('sales.show')->middleware('auth');
-Route::get('/sales/{sale}/invoice', 'SalesInvoiceController@show')->name('sales.invoice')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/boats', 'BoatsController@index')->name('boats.index');
+    Route::get('/boats/{boat}', 'BoatsController@show')->name('boats.show');
+    Route::get('/boats/{boat}/purchase', 'SalesController@create')->name('sales.create');
+    Route::post('/boats/{boat}/purchase', 'SalesController@store')->name('sales.store');
+    Route::get('/sales', 'SalesController@index')->name('sales.index');
+    Route::get('/sales/{sale}', 'SalesController@show')->name('sales.show');
+    Route::get('/sales/{sale}/invoice', 'SalesInvoiceController@show')->name('sales.invoice');
+});
