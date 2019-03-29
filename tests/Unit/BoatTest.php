@@ -32,4 +32,16 @@ class BoatTest extends TestCase
 
         $this->assertEquals('$25,000.00', $boat->list_price_in_dollars);
     }
+
+    /** @test */
+    public function name_returns_the_boats_year_make_and_model_concatenated()
+    {
+        $boat = factory(Boat::class)->create([
+            'year' => 2008,
+            'make' => 'Ford',
+            'model' => 'Ranger',
+        ]);
+
+        $this->assertEquals('2008 Ford Ranger', $boat->name);
+    }
 }

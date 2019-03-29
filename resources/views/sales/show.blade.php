@@ -8,7 +8,7 @@
                 <div class="card-header bg-secondary text-white">
                     <div class="row">
                         <div class="col-md-6">
-                            {{ $sale->boat->year }} {{ $sale->boat->make }} {{ $sale->boat->model }}
+                            {{ $sale->boat->name }}
                         </div>
 
                         <div class="col-md-6 text-md-right">
@@ -27,7 +27,7 @@
                         <div class="col-md-6 text-md-right">
                             Item:<br>
                             <a href="{{ route('boats.show', $sale->boat) }}">
-                                {{ $sale->boat->year }} {{ $sale->boat->make }} {{ $sale->boat->model }}
+                                {{ $sale->boat->name }}
                             </a><br>
 
                             <br>

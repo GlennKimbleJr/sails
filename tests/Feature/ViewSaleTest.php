@@ -21,13 +21,26 @@ class ViewSaleTest extends TestCase
     }
 
     /** @test */
-    public function guests_cannot_view_the_sale_page()
+    public function guests_cannot_view_the_sales_index()
+    {
+        $this->get(route('sales.index'))->assertRedirect(route('login'));
+    }
+
+    /** @test */
+    public function guests_cannot_view_an_individual_sales_page()
     {
         $this->get($this->route)->assertRedirect(route('login'));
     }
 
     /** @test */
-    public function users_can_view_the_sale_page()
+    public function users_can_view_the_sales_index()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user)->get(route('sales.index'))->assertStatus(200);
+    }
+
+    /** @test */
+    public function users_can_view_an_individual_sales_page()
     {
         $user = factory(User::class)->create();
         $customer = factory(Customer::class)->create();

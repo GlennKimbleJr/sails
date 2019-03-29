@@ -25,7 +25,7 @@
             <div class="card">
                 <div class="card-header bg-success text-white">Sales</div>
                 <div class="card-body">
-                    <a class="btn btn-block btn-light" href="#">View</a>
+                    <a class="btn btn-block btn-light" href="{{ route('sales.index') }}">View</a>
                 </div>
             </div>
         </div>

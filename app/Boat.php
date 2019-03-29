@@ -23,6 +23,11 @@ class Boat extends Model
         return '$' . number_format($this->list_price/100, 2);
     }
 
+    public function getNameAttribute()
+    {
+        return ucwords(trim($this->year . ' ' . $this->make . ' ' . $this->model));
+    }
+
     public function generateQuote($price)
     {
         return $this->sales()->create([

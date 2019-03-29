@@ -6,7 +6,7 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-header bg-secondary text-white">
-                    {{ $boat->year }} {{ $boat->make }} {{ $boat->model }}
+                    {{ $boat->name }}
                 </div>
                 <div class="card-body row">
                     <div class="col-md-6">

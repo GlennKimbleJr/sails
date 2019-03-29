@@ -11,6 +11,22 @@ use App\Http\Requests\CreateSaleRequest;
 class SalesController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $sales = Sale::orderByDesc('created_at')->get();
+
+        return view('sales.index', [
+            'quoted_sales' => $sales->quoted(),
+            'pending_sales' => $sales->pending(),
+            'delivered_sales' => $sales->delivered(),
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @param  \App\Boat $boat

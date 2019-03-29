@@ -4,6 +4,7 @@ namespace App;
 
 use App\Boat;
 use App\Customer;
+use App\Collections\SaleCollection;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
@@ -17,6 +18,17 @@ class Sale extends Model
         'price',
         'status',
     ];
+
+    /**
+     * Create a new Eloquent Collection instance.
+     *
+     * @param  array  $models
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function newCollection(array $models = [])
+    {
+        return new SaleCollection($models);
+    }
 
     public function boat()
     {
